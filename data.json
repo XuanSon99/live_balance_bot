@@ -1,7 +1,12 @@
 [
   {
-    "name": "PC",
+    "name": "PC 1",
     "wallet": "THHAztHtrcMcVcxwiNEB4cTfviSqDBk4UN",
+    "block_timestamp": 1696823121000
+  },
+  {
+    "name": "PC 2",
+    "wallet": "TUXsppberDuVqQmNN5mnxg4pJ3HU9YtCEw",
     "block_timestamp": 1696823121000
   },
   {
