@@ -58,7 +58,7 @@ async def callback_minute(context: ContextTypes.DEFAULT_TYPE):
     buy_price = buy.json()["data"][19]["adv"]["price"]
     sell_price = sell.json()["data"][19]["adv"]["price"]
  
-    text += f"\n🟢 {int(buy_price):,} - 🔴 {int(sell_price):,} | {int((int(buy_price) + int(sell_price))/2):,}"
+    text += f"\n<b>{int(buy_price):,} | {int(sell_price):,} | {int((int(buy_price) + int(sell_price))/2):,}</b>"
 
     await context.bot.edit_message_text(
         chat_id="-1001986367510",
