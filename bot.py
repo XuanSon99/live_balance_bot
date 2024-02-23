@@ -24,10 +24,23 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def messageHandler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     username = update.effective_user.username
     chat_id = update.effective_chat.id
-    # print(chat_id)
-    # await context.bot.send_message(
-    #     chat_id, text="hello", parse_mode=constants.ParseMode.HTML
-    # )
+    
+    if "/update" in update.message.text:
+        res = requests.get("https://api.chootc.com/api/tracking")
+        wallets = res.json()
+        data = []
+        for item in wallets:
+            if item["note"] == 2:
+                data.append(
+                {
+                    "name": item["name"],
+                    "wallet": item["address"],
+                    "block_timestamp": 1706281575000,
+                }
+            )
+
+        with open("data.json", "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
 
 
 async def callback_minute(context: ContextTypes.DEFAULT_TYPE):
