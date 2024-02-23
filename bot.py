@@ -52,6 +52,14 @@ async def callback_minute(context: ContextTypes.DEFAULT_TYPE):
     for index, item in enumerate(data):
         text += f"{index+2}. {item['name']}: {get_balance(item['wallet'])}\n"
 
+    buy = requests.get(f"{domain}/api/p2p?type=buy&asset=usdt&fiat=vnd&page=1")
+    sell = requests.get(f"{domain}/api/p2p?type=sell&asset=usdt&fiat=vnd&page=1")
+
+    buy_price = buy.json()["data"][19]["adv"]["price"]
+    sell_price = sell.json()["data"][19]["adv"]["price"]
+ 
+    text += f"🟢 {int(buy_price):,} - 🔴 {int(sell_price):,} | {int((int(buy_price) + int(sell_price))/2):,}"
+
     await context.bot.edit_message_text(
         chat_id="-1001986367510",
         message_id="26033",
